@@ -9,10 +9,11 @@ npm-debug.log
 yarn-error.log
 mysql/
 mysql/icecream_db/.*
+storage/users_avatars/*
 
-tags
-tags.lock
-tags.temp
+						tags
+						tags.lock
+						tags.temp
 
 
 # Laravel 4 specific
@@ -28,9 +29,9 @@ public_html/storage
 public_html/hot
 
 storage/*.key
-		 .env
-		 Homestead.yaml
-		 Homestead.json
-		 /.vagrant
-		 .phpunit.result.cache
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
 # End of https://www.toptal.com/developers/gitignore/api/laravel
