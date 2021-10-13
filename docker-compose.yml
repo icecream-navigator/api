@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    image: 'webshop_app'
+    image: 'icecream_app'
     ports:
       - 8080:80
     volumes:
@@ -19,6 +19,6 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: wp
-      MYSQL_DATABASE: 'webshop_db'
+      MYSQL_DATABASE: 'icecream_db'
 
 
