@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::get('profile',             [ ProfileController::class, 'profile']);
 });
 
+Route::get('google',        [ GoogleController::class, 'redirectToGoogle']);
+Route::get('google/callback',[ GoogleController::class, 'handleGoogleCallback']);
