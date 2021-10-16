@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'admin',
     ];
 
     /**
@@ -43,6 +44,11 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'admin' => 'boolean'
     ];
+
+    public function stalls()
+    {
+        $this->hasMany(Stall::class);
+    }
 
     public function getJWTIdentifier()
     {
