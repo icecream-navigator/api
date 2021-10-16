@@ -44,6 +44,11 @@ class User extends Authenticatable implements JWTSubject
         'admin' => 'boolean'
     ];
 
+    public function stalls()
+    {
+        $this->hasMany(Stall::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
