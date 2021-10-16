@@ -7,10 +7,12 @@ use App\Models\Stall;
 
 class StallService
 {
-    public function showStallByID($id)
+    public function showStallById($id)
     {
+
         $stall = Stall::with('icecreams')
-            ->where('id', $id);
+            ->where('id', $id)
+            ->get();
 
         return $stall;
     }
@@ -18,7 +20,8 @@ class StallService
     public function showStallWithOpinions($id)
     {
         $stall = Stall::with('opinions')
-            ->where('id', $id);
+            ->where('id', $id)
+            ->get();
 
         return $stall;
     }

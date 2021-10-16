@@ -17,11 +17,11 @@ class CreateIcecreamsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('stall_id');
-            $table->string('flavour');
-            $table->string('type');
-            $table->string('form');
-            $table->float('price');
-            $table->integer('quantity');
+            $table->string('flavour')->nullable();
+            $table->string('type')->nullable();
+            $table->string('form')->nullable();
+            $table->float('price')->nullable();
+            $table->integer('quantity')->nullable();
 
             $table->timestamps();
 

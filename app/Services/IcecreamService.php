@@ -40,6 +40,7 @@ class IcecreamService
         $icecream = Icecream::findOrFail($id);
 
         $icecream->update($data);
+
     }
 
     public function destroyMyIcecream($id)

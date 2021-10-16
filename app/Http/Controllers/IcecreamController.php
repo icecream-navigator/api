@@ -31,7 +31,7 @@ class IcecreamController extends Controller
 
     public function update(Request $request, Icecream $icecream, $id)
     {
-        $icecream->updateIcecream($id, $request->all());
+        $icecream->updateIcecream($request->all(), $id);
 
         return response()
             ->json(['MESSAGE'=>'A icecream has been updated']);

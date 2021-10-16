@@ -31,14 +31,14 @@ class Stall extends Model
     {
         $stall = new StallService;
 
-        $stall->ShowStallById($id);
+        return $stall->showStallById($id);
     }
 
     public function showOpinions($id)
     {
         $stall = new StallService;
 
-        $stall->showStallWithOpinions($id);
+        return $stall->showStallWithOpinions($id);
     }
 
     public function storeStall($user, array $data)
