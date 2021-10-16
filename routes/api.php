@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\IcecreamController;
+use App\Http\Controllers\OpinionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,11 @@ Route::middleware(['jwt.auth'])->group(function()
     Route::post('stall/create',           [ StallController::class, 'store']);
     Route::delete('stall/delete/{id}',    [ StallController::class, 'destroy']);
 
-    Route::post('icecream/store/{id}',    [ IcecreamController::class, 'store']);
-    Route::post('icecream/update/{id}',   [ IcecreamController::class, 'update']);
-    Route::delete('icecream/delete/{id}', [ IcecreamController::class, 'destroy']);
+    Route::post('icecream/store/{id}',       [ IcecreamController::class, 'store']);
+    Route::post('icecream/update/{id}',      [ IcecreamController::class, 'update']);
+    Route::delete('icecream/delete/{id}',    [ IcecreamController::class, 'destroy']);
+
+    Route::post('stall/{id}/opinion/create', [ OpinionController::class, 'store']);
 
 });
 

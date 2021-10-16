@@ -28,7 +28,9 @@ class StallController extends Controller
         $stalls_with_opinions = $stall->showOpinions($id);
 
         return response()
-            ->json(['STALLS_WITH_OPINIONS'=>$stalls_with_opinions]);
+            ->json([
+                'STALLS_WITH_OPINIONS'=>$stalls_with_opinions
+            ], 200, [], JSON_UNESCAPED_SLASHES);
     }
 
     public function store(Stall $stall, StallStoreRequest $request)

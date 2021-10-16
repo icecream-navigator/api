@@ -15,10 +15,10 @@ class CreateOpinionsTable extends Migration
     {
         Schema::create('opinions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('stall_id');
-            $table->text('opinion');
-            $table->string('author');
-            $table->string('author_avatar');
+            $table->unsignedBigInteger('stall_id')->nullable();
+            $table->text('opinion')->nullable();
+            $table->string('author')->nullable();
+            $table->string('author_avatar')->nullable();
             $table->timestamps();
 
             $table->foreign('stall_id')
