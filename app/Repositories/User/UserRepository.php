@@ -10,7 +10,7 @@ interface UserRepository
 
 	public function googleCallback($user, SocialService $social);
 
-	public function FacebookCallback($user, SocialService $social);
+	public function facebookCallback($user, SocialService $social);
 }
 
 

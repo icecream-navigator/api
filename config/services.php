@@ -39,7 +39,8 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://127.0.0.1:8080/api/facebook/callback',
+        //'redirect' => 'http://127.0.0.1:8080/api/facebook/callback',
+        'redirect' => 'https://07da-91-222-226-162.ngrok.io/api/facebook/callback',
 
     ],
 ];

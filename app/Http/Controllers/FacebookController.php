@@ -26,7 +26,7 @@ class FacebookController extends Controller
     {
         $user =  Socialite::driver('facebook')->stateless()->user();
 
-        $facebook_user = $this->user->googleCallback($user, $this->social);
+        $facebook_user = $this->user->facebookCallback($user, $this->social);
 
         return response()->json(['facebook_user' => $facebook_user ]);
     }

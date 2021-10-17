@@ -28,7 +28,7 @@ class EloquentUser implements UserRepository
 
 	}
 
-	public function FacebookCallback($user, $social)
+	public function facebookCallback($user, $social)
 	{
 		return $social->SocialLogin($user);
 	}
