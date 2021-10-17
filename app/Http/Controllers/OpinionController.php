@@ -4,19 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Opinion;
 use App\Http\Requests\OpinionStoreRequest;
+use App\Repositories\Opinion\OpinionRepository;
 
 class OpinionController extends Controller
 {
+    private $opinion;
 
-    public function store (Opinion $opinion, OpinionStoreRequest $request ,$id)
+    public function __construct(OpinionRepository $opinion)
+    {
+        $this->opinion = $opinion;
+    }
+
+    public function store(OpinionStoreRequest $request, $stall_id)
     {
         $user = auth()->user();
 
-        $opinions = $opinion->storeOpinion($user, $request->all(),$id);
+        $this->opinion->store($user, $stall_id, $request->all());
 
-        return response()
-            ->json([
-                'STALLS_WITH_OPINIONS'=>$opinions
-            ], 200, [], JSON_UNESCAPED_SLASHES);
     }
 }

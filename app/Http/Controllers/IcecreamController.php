@@ -3,45 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Icecream;
 use App\Http\Requests\IcecreamStoreRequest;
+use App\Repositories\Icecream\IcecreamRepository;
 
 class IcecreamController extends Controller
 {
+    private $icecream;
 
-    public function show(Icecream $icecream, $id)
+    public function __construct(IcecreamRepository $icecream)
     {
-        $icecream_with_opinions = $icecream->showIcecream($id);
-
-        return response()
-            ->json([
-                'ICECREAM_WITH_OPINIONS'=> $icecream_with_opinions
-            ]);
+        $this->icecream = $icecream;
     }
 
-    public function store(IcecreamStoreRequest $request, Icecream $icecream, $id)
+    public function store(IcecreamStoreRequest $request, $icecream_id)
     {
         $user = auth()->user();
 
-        $icecream->storeIcecream($user, $request->all(), $id);
-
-        return response()
-            ->json(['MESSAGE'=>'A icecream has been added']);
+        return $this->icecream->store($user, $icecream_id, $request->all());
     }
 
-    public function update(Request $request, Icecream $icecream, $id)
+    public function update(Request $request, $icecream_id)
     {
-        $icecream->updateIcecream($request->all(), $id);
+        return $this->icecream->update($icecream_id, $request->all());
 
-        return response()
-            ->json(['MESSAGE'=>'A icecream has been updated']);
     }
 
-    public function destroy(Icecream $icecream, $id)
+    public function destroy($icecream_id)
     {
-        $icecream->destroyIcream($id);
-
-        return response()
-            ->json(['MESSAGE'=>'A icecream has been deleted']);
+        $this->icecream->destroy($icecream_id);
     }
 }
