@@ -3,51 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StallStoreRequest;
-use App\Models\Stall;
+use App\Repositories\Stall\StallRepository;
 
 class StallController extends Controller
 {
 
+    private $stall;
+
+    public function __construct(StallRepository $stall)
+    {
+        $this->stall = $stall;
+    }
+
     public function index()
     {
-        $stalls = Stall::all();
-
-        return response()->json(['ALL_STALLS'=>$stalls]);
+        return $this->stall->index();
     }
 
-    public function show(Stall $stall, $id)
+    public function show($stall_id)
     {
-        $stalls_with_icecreams = $stall->showStall($id);
-
-        return response()
-            ->json(['STALLS_WITH_ICECREAMS'=>$stalls_with_icecreams]);
+        return $this->stall->show($stall_id);
     }
 
-    public function showStallWithOpinions(Stall $stall, $id)
+    public function showOpinions($stall_id)
     {
-        $stalls_with_opinions = $stall->showOpinions($id);
-
-        return response()
-            ->json([
-                'STALLS_WITH_OPINIONS'=>$stalls_with_opinions
-            ], 200, [], JSON_UNESCAPED_SLASHES);
+        return $this->stall->showOpinions($stall_id);
     }
 
-    public function store(Stall $stall, StallStoreRequest $request)
+    public function store(StallStoreRequest $request)
     {
         $user = auth()->user();
 
-        $stall->storeStall($user, $request->all());
-
-        return response()->json(['MESSAGE'=>'Stall has been added']);
+        return $this->stall->store($user, $request->all());
     }
 
-    public function destroy(Stall $stall, $id)
+    public function destroy($stall_id)
     {
-        $stall->destroyStall($id);
-
-        return response()->json(['MESSAGE'=> 'Stall has been deleted']);
+        return $this->stall->destroy($stall_id);
     }
+
+
+
+
 }
 
 
