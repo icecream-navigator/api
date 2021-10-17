@@ -9,6 +9,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\IcecreamController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,9 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
 });
 
 Route::get('google',          [ GoogleController::class, 'redirectToGoogle']);
+Route::get('facebook',          [ FacebookController::class, 'redirectToFacebook']);
 Route::get('google/callback', [ GoogleController::class, 'handleGoogleCallback']);
+Route::get('facebook/callback', [ FacebookController::class, 'handleFacebookCallback']);
 
 Route::get('stall/all',                [ StallController::class, 'index']);
 Route::get('stall/show/{stall_id}',           [ StallController::class, 'show']);
