@@ -4,7 +4,6 @@ namespace App\Repositories\User;
 
 use App\Models\User;
 use App\Services\AvatarService;
-use JWTAuth;
 
 class EloquentUser implements UserRepository
 {
@@ -12,7 +11,7 @@ class EloquentUser implements UserRepository
 
 	public function __construct(User $model, AvatarService $avatar)
 	{
-		$this->model = $model;
+		$this->model  = $model;
 		$this->avatar = $avatar;
 	}
 
@@ -23,35 +22,15 @@ class EloquentUser implements UserRepository
 		$this->model->save();
 	}
 
-	public function googleCallback($user)
+	public function googleCallback($user,$social)
 	{
-		$name           = $user->getName();
-		$avatar         = $user->getAvatar();
-		$email          = $user->getEmail();
+		return $social->SocialLogin($user);
 
+	}
 
-		$this->model = User::where([
-			'name'           => $name,
-			'email'          => $email,
-			'avatar'         => $avatar,
-		])->first();
-
-
-		$user = User::firstOrCreate([
-			'name'           => $name,
-			'email'          => $email,
-			'avatar'         => $avatar,
-		]);
-
-		$token = JWTAuth::fromUser($user);
-
-		return [
-			'access_token'   => $token,
-			'name'           => $name,
-			'email'          => $email,
-			'avatar'         => $avatar,
-		];
-
+	public function FacebookCallback($user, $social)
+	{
+		return $social->SocialLogin($user);
 	}
 }
 
