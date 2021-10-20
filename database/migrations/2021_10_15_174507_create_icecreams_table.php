@@ -15,6 +15,7 @@ class CreateIcecreamsTable extends Migration
     {
         Schema::create('icecreams', function (Blueprint $table) {
             $table->id();
+            $table->string('stall_name');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('stall_id');
             $table->string('flavour')->nullable();

@@ -19,6 +19,7 @@ class Icecream extends Model
         'quantity',
         'user_id',
         'stall_id',
+        'stall_name'
     ];
 
     public function stalls()
