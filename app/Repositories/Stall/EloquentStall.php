@@ -3,6 +3,7 @@
 namespace App\Repositories\Stall;
 
 use App\Models\Stall;
+use Illuminate\Support\Facades\Storage;
 
 class EloquentStall implements StallRepository
 {
@@ -32,7 +33,10 @@ class EloquentStall implements StallRepository
 
 	public function store($user, array $attributes)
 	{
+		$img_url = Storage::disk('public')->url('default.png');
+
 		$this->model->owner = $user->name;
+		$this->model->stall_image = $img_url;
 		$stall = $this->model->fill($attributes);
 
 		$stall->saveOrFail();

@@ -17,6 +17,7 @@ class CreateStallsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('owner');
+            $table->string('stall_image');
             $table->string('location');
 
             $table->timestamps();

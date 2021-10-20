@@ -46,11 +46,12 @@ Route::middleware(['jwt.auth'])->group(function()
     Route::post('stall/create',           [ StallController::class, 'store']);
     Route::delete('stall/delete/{stall_id}',    [ StallController::class, 'destroy']);
 
-    Route::post('icecream/store/{id}',       [ IcecreamController::class, 'store']);
-    Route::post('icecream/update/{id}',      [ IcecreamController::class, 'update']);
-    Route::delete('icecream/delete/{id}',    [ IcecreamController::class, 'destroy']);
+    Route::post('icecream/store/{id}',    [ IcecreamController::class, 'store']);
+    Route::post('icecream/update/{id}',   [ IcecreamController::class, 'update']);
+    Route::delete('icecream/delete/{id}', [ IcecreamController::class, 'destroy']);
 
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
 
 });
+Route::get('icecream/all',           [ IcecreamController::class, 'index']);
 

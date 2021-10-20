@@ -15,6 +15,11 @@ class IcecreamController extends Controller
         $this->icecream = $icecream;
     }
 
+    public function index()
+    {
+        return $this->icecream->index();
+    }
+
     public function store(IcecreamStoreRequest $request, $icecream_id)
     {
         $user = auth()->user();

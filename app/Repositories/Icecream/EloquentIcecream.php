@@ -14,12 +14,18 @@ class EloquentIcecream implements IcecreamRepository
 		$this->model = $model;
 	}
 
+	public function index()
+	{
+		return $this->model->all();
+	}
+
 	public function store($user,$stall_id, array $attributes)
 	{
-		Stall::findOrFail($stall_id);
+		$stall = Stall::findOrFail($stall_id);
 
-		$this->model->user_id = $user->id;
-		$this->model->stall_id = $stall_id;
+		$this->model->user_id    = $user->id;
+		$this->model->stall_id   = $stall_id;
+		$this->model->stall_name = $stall->name;
 
 		$this->model->fill($attributes);
 
