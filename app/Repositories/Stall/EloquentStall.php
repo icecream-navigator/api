@@ -50,7 +50,8 @@ class EloquentStall implements StallRepository
 					   ->where('id', $stall_id)
 					   ->get();
 
-		return $stall;
+		return response()
+			->json(['Opinions' => $stall], 200, [], JSON_UNESCAPED_SLASHES);
 	}
 
 	public function destroy($stall_id)
