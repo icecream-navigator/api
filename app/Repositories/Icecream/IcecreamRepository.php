@@ -12,6 +12,8 @@ interface IcecreamRepository
 
 	public function destroy($icecream_id);
 
+	public function find($request);
+
 }
 
 ?>

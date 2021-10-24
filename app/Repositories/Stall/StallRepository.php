@@ -13,6 +13,7 @@ interface StallRepository
 	public function showOpinions($stall_id);
 
 	public function destroy($stall_id);
+
 }
 
 ?>

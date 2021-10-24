@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\IcecreamSearchRequest;
 use App\Http\Requests\IcecreamStoreRequest;
 use App\Repositories\Icecream\IcecreamRepository;
 
@@ -36,5 +37,10 @@ class IcecreamController extends Controller
     public function destroy($icecream_id)
     {
         $this->icecream->destroy($icecream_id);
+    }
+
+    public function search(IcecreamSearchRequest $request)
+    {
+        return $this->icecream->find($request);
     }
 }
