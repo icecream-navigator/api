@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\IcecreamService;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Icecream extends Model
+class Icecream extends Model implements Searchable
 {
     use HasFactory;
 
@@ -27,32 +28,11 @@ class Icecream extends Model
         return $this->belongsTo(Stall::class);
     }
 
-
-    public function showIcecream($id)
+    public function getSearchResult(): SearchResult
     {
-        $icecream = new IcecreamService;
-
-        return $icecream->showIcecreamById($id);
-    }
-
-    public function storeIcecream($user,array $data, $id)
-    {
-        $icecream = new IcecreamService;
-
-        $icecream->storeMyIcecream($user, $data, $id);
-    }
-
-    public function updateIcecream(array $data, $id)
-    {
-        $icecream = new IcecreamService;
-
-        $icecream->updateMyIcecream($data, $id);
-    }
-
-    public function destroyIcream($id)
-    {
-        $icecream = new IcecreamService;
-
-        $icecream->destroyMyIcecream($id);
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->type,
+        );
     }
 }
