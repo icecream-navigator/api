@@ -6,7 +6,7 @@ services:
       dockerfile: .docker/Dockerfile
     image: 'icecream_app'
     ports:
-      - 8080:80
+      - 8081:80
     volumes:
       - ./:/var/www/html
 
