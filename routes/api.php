@@ -41,6 +41,8 @@ Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpin
 Route::middleware(['jwt.auth'])->group(function()
 {
     Route::post('stall/create',              [ StallController::class, 'store']);
+    Route::get('stall/my',                   [ StallController::class, 'showMyStalls']);
+    Route::post('stall/update/{stall_id}',   [ StallController::class, 'update']);
     Route::delete('stall/delete/{stall_id}', [ StallController::class, 'destroy']);
 
     Route::post('icecream/store/{id}',       [ IcecreamController::class, 'store']);
