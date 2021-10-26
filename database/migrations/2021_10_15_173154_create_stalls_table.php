@@ -15,12 +15,20 @@ class CreateStallsTable extends Migration
     {
         Schema::create('stalls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('owner');
-            $table->string('stall_image');
+            $table->string('photo_url')->nullable();
+            $table->string('photo_name')->nullable();
+            $table->string('photo')->nullable();
             $table->string('location');
 
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 

@@ -4,14 +4,16 @@ namespace App\Repositories\Stall;
 
 use App\Models\Stall;
 use Illuminate\Support\Facades\Storage;
+use App\Services\UploadPhotoService;
 
 class EloquentStall implements StallRepository
 {
-	private $model;
+	private $model, $upload;
 
-	public function __construct(Stall $model)
+	public function __construct(Stall $model, UploadPhotoService $upload)
 	{
-		$this->model = $model;
+		$this->model  = $model;
+		$this->upload = $upload;
 	}
 
 
@@ -31,12 +33,15 @@ class EloquentStall implements StallRepository
 		return $stall;
 	}
 
-	public function store($user, array $attributes)
+	public function store($user, array $attributes, $upload)
 	{
-		$img_url = Storage::disk('public')->url('default.png');
+		$this->upload->setImage($upload);
 
-		$this->model->owner = $user->name;
-		$this->model->stall_image = $img_url;
+		$this->model->user_id = $user->id;
+		$this->model->owner      = $user->name;
+		$this->model->photo_url  = $this->upload->getPhotoUrl();
+		$this->model->photo_name = $this->upload->getPhotoName();
+
 		$stall = $this->model->fill($attributes);
 
 		$stall->saveOrFail();
@@ -52,6 +57,25 @@ class EloquentStall implements StallRepository
 
 		return response()
 			->json(['Opinions' => $stall], 200, [], JSON_UNESCAPED_SLASHES);
+	}
+
+	public function showMyStalls($user)
+	{
+		$stalls = $user->stalls()->get();
+
+		return $stalls;
+	}
+
+	public function update($stall_id, array $attributes, $upload)
+	{
+		$stall = $this->model->findOrFail($stall_id);
+
+		$this->upload->setImage($upload);
+
+		$stall->photo_url  = $this->upload->getPhotoUrl();
+		$stall->photo_name = $this->upload->getPhotoName();
+
+		$stall->update($attributes);
 	}
 
 	public function destroy($stall_id)

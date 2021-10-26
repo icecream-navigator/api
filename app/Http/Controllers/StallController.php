@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StallStoreRequest;
 use App\Repositories\Stall\StallRepository;
+use Illuminate\Http\Request;
 
 class StallController extends Controller
 {
@@ -30,11 +31,27 @@ class StallController extends Controller
         return $this->stall->showOpinions($stall_id);
     }
 
+    public function showMyStalls()
+    {
+        $user = auth()->user();
+
+        return $this->stall->showMyStalls($user);
+    }
+
     public function store(StallStoreRequest $request)
     {
         $user = auth()->user();
 
-        return $this->stall->store($user, $request->all());
+        $upload = $this->stall->photo = $request->file('photo');
+
+        return $this->stall->store($user, $request->all(), $upload);
+    }
+
+    public function update($stall_id, Request $request)
+    {
+        $upload = $this->stall->photo = $request->file('photo');
+
+        return $this->stall->update($stall_id, $request->all(), $upload);
     }
 
     public function destroy($stall_id)

@@ -8,9 +8,13 @@ interface StallRepository
 
 	public function show($stall_id);
 
-	public function store($user, array $attributes);
+	public function store($user, array $attributes, $upload);
 
 	public function showOpinions($stall_id);
+
+	public function showMyStalls($user);
+
+	public function update($stall_id, array $attributes, $upload);
 
 	public function destroy($stall_id);
 

@@ -27,6 +27,7 @@ class StallStoreRequest extends FormRequest
 
             'name'     => 'required|string|between:5,20',
             'location' => 'required|string|between:5,25',
+            'photo'    => 'image:jpeg,png,jpg,gif,svg|max:4048'
 
         ];
     }
@@ -35,9 +36,10 @@ class StallStoreRequest extends FormRequest
     {
         return [
 
-            'name.required' => 'This field is required',
-            'name.between'  => 'Must enter 5-20 characters',
-            'location'      => 'Tthis field is required',
+            'name.required'     => 'This field is required',
+            'name.between'      => 'Must enter 5-20 characters',
+            'location.required' => 'Tthis field is required',
+            'photo.image'       => 'You must provide image with correct format',
         ];
     }
 }

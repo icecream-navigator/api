@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'admin',
+        'avatar'
     ];
 
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function stalls()
     {
-        $this->hasMany(Stall::class);
+        return $this->hasMany(Stall::class);
     }
 
     public function getJWTIdentifier()

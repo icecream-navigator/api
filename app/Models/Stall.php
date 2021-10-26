@@ -13,6 +13,15 @@ class Stall extends Model
         'name',
         'owner',
         'location',
+        'photo',
+        'photo_url',
+        'photo_name',
+        'user_id'
+    ];
+
+    protected $hidden = [
+        'photo',
+        'photo_name'
     ];
 
     public function icecreams()
