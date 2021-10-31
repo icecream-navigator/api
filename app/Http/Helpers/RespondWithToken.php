@@ -11,7 +11,7 @@ function respondWithToken($token, $request)
         'access_token' => $token,
         'user_avatar'  => $user->avatar,
         'user_name'    => $user->name,
-        'admin'        => $user->admin,
+        'is_admin'     => $user->is_admin,
         'token_type'   => 'bearer',
     ], 200, [], JSON_UNESCAPED_SLASHES);
 

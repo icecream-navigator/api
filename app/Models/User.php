@@ -20,8 +20,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'admin',
-        'avatar'
+        'is_admin',
+        'avatar',
     ];
 
     /**
@@ -41,7 +41,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'admin' => 'boolean'
+        'is_admin' => 'boolean'
     ];
 
     public function stalls()

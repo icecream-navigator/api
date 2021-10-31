@@ -3,11 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\IcecreamController;
 use App\Http\Controllers\OpinionController;
-use App\Http\Controllers\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,16 +28,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::post('login',              [ AuthController::class, 'login']);
 });
 
-Route::get('google',            [ GoogleController::class, 'redirectToGoogle']);
-Route::get('facebook',          [ FacebookController::class, 'redirectToFacebook']);
-Route::get('google/callback',   [ GoogleController::class, 'handleGoogleCallback']);
-Route::get('facebook/callback', [ FacebookController::class, 'handleFacebookCallback']);
+Route::get('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
 
 Route::get('stall/all',                      [ StallController::class, 'index']);
 Route::get('stall/show/{stall_id}',          [ StallController::class, 'show']);
 Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpinions']);
 
-Route::middleware(['jwt.auth'])->group(function()
+Route::middleware(['is_admin','jwt.auth'])->group(function()
 {
     Route::post('stall/create',              [ StallController::class, 'store']);
     Route::get('stall/my',                   [ StallController::class, 'showMyStalls']);
@@ -49,9 +45,15 @@ Route::middleware(['jwt.auth'])->group(function()
     Route::post('icecream/update/{id}',      [ IcecreamController::class, 'update']);
     Route::delete('icecream/delete/{id}',    [ IcecreamController::class, 'destroy']);
 
+
+});
+
+Route::middleware(['jwt.auth'])->group(function()
+{
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
 
 });
+
 Route::get('icecream/all',     [ IcecreamController::class, 'index']);
 Route::post('icecream/search', [ IcecreamController::class, 'search']);
 
