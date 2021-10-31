@@ -7,6 +7,8 @@ use JWTAuth;
 
 class SocialService
 {
+    private $token;
+
     public function SocialLogin($user)
     {
         $name   = $user->getName();
@@ -27,7 +29,7 @@ class SocialService
             'avatar' => $avatar,
         ]);
 
-        $token = JWTAuth::fromUser($user);
+        $this->token = $token = JWTAuth::fromUser($user);
 
         return [
             'access_token' => $token,

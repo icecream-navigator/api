@@ -12,10 +12,7 @@ interface UserRepository
 
 	public function setAvatar($user);
 
-	public function googleCallback($user, SocialService $social);
-
-	public function facebookCallback($user, SocialService $social);
-
+	public function providerCallback($user, SocialService $social);
 }
 
 
