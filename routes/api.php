@@ -7,6 +7,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\IcecreamController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\FavoriteStallController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
 
 Route::get('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
 
-Route::get('stall/all',                      [ StallController::class, 'index']);
-Route::get('stall/show/{stall_id}',          [ StallController::class, 'show']);
-Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpinions']);
 
-Route::middleware(['is_admin','jwt.auth'])->group(function()
+Route::middleware(['is_admin'])->group(function()
 {
     Route::post('stall/create',              [ StallController::class, 'store']);
     Route::get('stall/my',                   [ StallController::class, 'showMyStalls']);
@@ -48,12 +46,20 @@ Route::middleware(['is_admin','jwt.auth'])->group(function()
 
 });
 
-Route::middleware(['jwt.auth'])->group(function()
+Route::middleware(['is_user'])->group(function()
 {
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
 
+    Route::post('fav/{stall_id}',                  [ FavoriteStallController::class, 'favourite']);
+    Route::post('unf/{stall_id}',                  [ FavoriteStallController::class, 'unfavourite']);
+    Route::get('fav/index',                        [ FavoriteStallController::class, 'index']);
+
 });
 
-Route::get('icecream/all',     [ IcecreamController::class, 'index']);
-Route::post('icecream/search', [ IcecreamController::class, 'search']);
+Route::get('stall/all',                      [ StallController::class, 'index']);
+Route::get('stall/show/{stall_id}',          [ StallController::class, 'show']);
+Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpinions']);
+
+Route::get('icecream/all',                   [ IcecreamController::class, 'index']);
+Route::post('icecream/search',               [ IcecreamController::class, 'search']);
 

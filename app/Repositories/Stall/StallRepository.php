@@ -18,6 +18,12 @@ interface StallRepository
 
 	public function destroy($stall_id);
 
+	public function addToFavorite($user, $stall_id);
+
+	public function removeFromFavorites($stall_id);
+
+	public function showFavorites($user);
+
 }
 
 ?>
