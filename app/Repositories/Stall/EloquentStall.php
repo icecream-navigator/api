@@ -3,7 +3,6 @@
 namespace App\Repositories\Stall;
 
 use App\Models\Stall;
-use Illuminate\Support\Facades\Storage;
 use App\Services\UploadPhotoService;
 
 class EloquentStall implements StallRepository
@@ -84,19 +83,30 @@ class EloquentStall implements StallRepository
 
 		$stall->delete($stall_id);
 	}
+
+	public function addToFavorite($user, $stall_id)
+	{
+		$stall = $this->model->findOrFail($stall_id);
+
+		$user->addFavorite($stall);
+
+	}
+
+	public function removeFromFavorites($stall_id)
+	{
+		$stall = $this->model->findOrFail($stall_id);
+
+		$stall->removeFavorite();
+	}
+
+	public function showFavorites($user)
+	{
+		$stall = $user->favorite(Stall::class);
+
+		return $stall;
+
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>
