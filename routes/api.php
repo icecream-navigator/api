@@ -29,7 +29,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'api'], function () {
     Route::post('login',              [ AuthController::class, 'login']);
 });
 
-Route::get('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
+Route::post('provider/callback',   [ SocialController::class, 'handleProviderCallback']);
 
 
 Route::middleware(['is_admin'])->group(function()
