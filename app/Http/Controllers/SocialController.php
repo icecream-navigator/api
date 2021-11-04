@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Laravel\Socialite\Facades\Socialite;
 use App\Repositories\User\UserRepository;
 use App\Services\SocialService;
-use Illuminate\Http\Request;
+use App\Http\Requests\SocialLoginRequest;
 
 class SocialController extends Controller
 {
@@ -18,12 +18,17 @@ class SocialController extends Controller
         $this->social = $social;
     }
 
-    public function handleProviderCallback(Request $reqeust)
+    public function handleProviderCallback(SocialLoginRequest $request)
     {
-        $token    = $reqeust->input('_token');
-        $provider = $reqeust->input('_provider');
+        $token    = $request->input('_token');
+        $provider = $request->input('_provider');
 
-        $user =  Socialite::driver($provider)->stateless()->userFromToken($token);
+        try {
+            $user =  Socialite::driver($provider)
+                ->stateless()->userFromToken($token);
+        } catch (\Exception $e) {
+            abort(401, 'Token is invalid');
+        }
 
         $social_user = $this->user->providerCallback($user, $this->social);
 
