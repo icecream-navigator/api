@@ -20,12 +20,18 @@ class Icecream extends Model implements Searchable
         'quantity',
         'user_id',
         'stall_id',
-        'stall_name'
+        'stall_name',
     ];
+
 
     public function stalls()
     {
         return $this->belongsTo(Stall::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
     }
 
     public function getSearchResult(): SearchResult

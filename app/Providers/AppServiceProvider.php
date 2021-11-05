@@ -11,6 +11,8 @@ use App\Repositories\Opinion\OpinionRepository;
 use App\Repositories\Opinion\EloquentOpinion;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\EloquentUser;
+use App\Repositories\Vote\VoteRepository;
+use App\Repositories\Vote\EloquentVote;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IcecreamRepository::class, EloquentIcecream::class);
         $this->app->singleton(OpinionRepository::class, EloquentOpinion::class);
         $this->app->singleton(UserRepository::class, EloquentUser::class);
+        $this->app->singleton(VoteRepository::class, EloquentVote::class);
     }
 }

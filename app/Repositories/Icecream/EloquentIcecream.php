@@ -20,6 +20,16 @@ class EloquentIcecream implements IcecreamRepository
 		return $this->model->all();
 	}
 
+	public function show($icecream_id)
+	{
+		$icecream = $this->model->findOrFail($icecream_id);
+
+		$icecream->loadCount('votes');
+
+		return $icecream;
+
+	}
+
 	public function store($user,$stall_id, array $attributes)
 	{
 		$stall = Stall::findOrFail($stall_id);

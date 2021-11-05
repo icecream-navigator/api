@@ -8,6 +8,7 @@ use App\Http\Controllers\StallController;
 use App\Http\Controllers\IcecreamController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\FavoriteStallController;
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,13 +47,16 @@ Route::middleware(['is_admin'])->group(function()
 
 });
 
-Route::middleware(['is_user'])->group(function()
+Route::middleware(['is_user','has_voted'])->group(function()
+
 {
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
 
-    Route::post('fav/{stall_id}',                  [ FavoriteStallController::class, 'favourite']);
-    Route::post('unf/{stall_id}',                  [ FavoriteStallController::class, 'unfavourite']);
-    Route::get('fav/index',                        [ FavoriteStallController::class, 'index']);
+    Route::post('fav/{stall_id}',     [ FavoriteStallController::class, 'favourite']);
+    Route::post('unf/{stall_id}',     [ FavoriteStallController::class, 'unfavourite']);
+    Route::get('fav/index',           [ FavoriteStallController::class, 'index']);
+
+    Route::post('icecream/vote/{id}', [ VoteController::class, 'store']);
 
 });
 
@@ -60,6 +64,7 @@ Route::get('stall/all',                      [ StallController::class, 'index'])
 Route::get('stall/show/{stall_id}',          [ StallController::class, 'show']);
 Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpinions']);
 
-Route::get('icecream/all',                   [ IcecreamController::class, 'index']);
-Route::post('icecream/search',               [ IcecreamController::class, 'search']);
+Route::get('icecream/all',                [ IcecreamController::class, 'index']);
+Route::get('icecream/show/{icecream_id}', [ IcecreamController::class, 'show']);
+Route::post('icecream/search',            [ IcecreamController::class, 'search']);
 
