@@ -35,6 +35,7 @@ class CreateIcecreamsTable extends Migration
                   ->references('id')
                   ->on('stalls')
                   ->onDelete('cascade');
+
         });
     }
 

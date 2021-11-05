@@ -6,6 +6,8 @@ interface IcecreamRepository
 {
 	public function index();
 
+	public function show($id);
+
 	public function store($user, $icecream_id, array $attributes);
 
 	public function update($icecream_id, array $attributes);
