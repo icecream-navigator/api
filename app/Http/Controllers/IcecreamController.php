@@ -30,18 +30,24 @@ class IcecreamController extends Controller
     {
         $user = auth()->user();
 
-        return $this->icecream->store($user, $icecream_id, $request->all());
+        $this->icecream->store($user, $icecream_id, $request->all());
+
+        return response()->json(['message'=>'Icecream stored']);
     }
 
     public function update(Request $request, $icecream_id)
     {
-        return $this->icecream->update($icecream_id, $request->all());
+        $this->icecream->update($icecream_id, $request->all());
+
+        return response()->json(['message'=>'Icecream updated']);
 
     }
 
     public function destroy($icecream_id)
     {
         $this->icecream->destroy($icecream_id);
+
+        return response()->json(['message'=>'Icecream destroyed']);
     }
 
     public function search(IcecreamSearchRequest $request)

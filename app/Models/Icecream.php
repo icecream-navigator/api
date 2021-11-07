@@ -21,6 +21,16 @@ class Icecream extends Model implements Searchable
         'user_id',
         'stall_id',
         'stall_name',
+        'votes'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $casts = [
+        'votes' => 'integer'
     ];
 
 

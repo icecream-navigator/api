@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIcecreamsTable extends Migration
+class CreateRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,30 +13,21 @@ class CreateIcecreamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('icecreams', function (Blueprint $table) {
+        Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->string('stall_name');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('stall_id');
-            $table->string('flavour')->nullable();
-            $table->string('type')->nullable();
-            $table->string('form')->nullable();
-            $table->float('price')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->integer('votes')->nullable();
+            $table->integer('rate')->nullable();
 
             $table->timestamps();
 
             $table->foreign('user_id')
                   ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+                  ->on('users');
 
             $table->foreign('stall_id')
                   ->references('id')
-                  ->on('stalls')
-                  ->onDelete('cascade');
-
+                  ->on('stalls');
         });
     }
 
@@ -47,6 +38,6 @@ class CreateIcecreamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('icecreams');
+        Schema::dropIfExists('rates');
     }
 }

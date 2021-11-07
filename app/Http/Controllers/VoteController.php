@@ -19,7 +19,7 @@ class VoteController extends Controller
 
         $this->vote->store($user, $icecream_id);
 
-        return response()->json(['You voted']);
+        return response()->json(['message'=>'You voted']);
 
     }
 }

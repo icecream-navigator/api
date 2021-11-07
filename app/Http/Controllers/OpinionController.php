@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opinion;
 use App\Http\Requests\OpinionStoreRequest;
 use App\Repositories\Opinion\OpinionRepository;
 
@@ -20,6 +19,8 @@ class OpinionController extends Controller
         $user = auth()->user();
 
         $this->opinion->store($user, $stall_id, $request->all());
+
+        return response()->json(['message'=>'Opinion created']);
 
     }
 }

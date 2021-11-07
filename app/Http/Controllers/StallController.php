@@ -44,19 +44,25 @@ class StallController extends Controller
 
         $upload = $this->stall->photo = $request->file('photo');
 
-        return $this->stall->store($user, $request->all(), $upload);
+        $this->stall->store($user, $request->all(), $upload);
+
+        return response()->json(['message'=>'Created new stall']);
     }
 
     public function update($stall_id, Request $request)
     {
         $upload = $this->stall->photo = $request->file('photo');
 
-        return $this->stall->update($stall_id, $request->all(), $upload);
+        $this->stall->update($stall_id, $request->all(), $upload);
+
+        return response()->json(['message'=>'Updated stall']);
     }
 
     public function destroy($stall_id)
     {
-        return $this->stall->destroy($stall_id);
+        $this->stall->destroy($stall_id);
+
+        return response()->json(['message'=>'Destroyed stall']);
     }
 
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\IcecreamController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\FavoriteStallController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\RateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ Route::middleware(['is_admin'])->group(function()
 
 });
 
-Route::middleware(['is_user','has_voted'])->group(function()
+Route::middleware(['is_user'])->group(function()
 
 {
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
@@ -56,7 +57,11 @@ Route::middleware(['is_user','has_voted'])->group(function()
     Route::post('unf/{stall_id}',     [ FavoriteStallController::class, 'unfavourite']);
     Route::get('fav/index',           [ FavoriteStallController::class, 'index']);
 
-    Route::post('icecream/vote/{id}', [ VoteController::class, 'store']);
+    Route::post('icecream/vote/{id}', [ VoteController::class, 'store'])
+        ->middleware('has_voted');
+
+    Route::post('stall/rate/{id}',    [ RateController::class, 'store'])
+        ->middleware('has_rated');
 
 });
 
