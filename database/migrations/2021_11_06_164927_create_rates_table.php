@@ -27,7 +27,9 @@ class CreateRatesTable extends Migration
 
             $table->foreign('stall_id')
                   ->references('id')
-                  ->on('stalls');
+                  ->on('stalls')
+                  ->onDelete('cascade');
+
         });
     }
 

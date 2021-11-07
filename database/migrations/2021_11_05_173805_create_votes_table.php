@@ -26,7 +26,8 @@ class CreateVotesTable extends Migration
 
             $table->foreign('icecream_id')
                   ->references('id')
-                  ->on('icecreams');
+                  ->on('icecreams')
+                  ->onDelete('cascade');
         });
     }
 

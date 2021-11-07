@@ -38,14 +38,24 @@ Route::middleware(['is_admin'])->group(function()
 {
     Route::post('stall/create',              [ StallController::class, 'store']);
     Route::get('stall/my',                   [ StallController::class, 'showMyStalls']);
-    Route::post('stall/update/{stall_id}',   [ StallController::class, 'update']);
-    Route::delete('stall/delete/{stall_id}', [ StallController::class, 'destroy']);
-
-    Route::post('icecream/store/{id}',       [ IcecreamController::class, 'store']);
-    Route::post('icecream/update/{id}',      [ IcecreamController::class, 'update']);
-    Route::delete('icecream/delete/{id}',    [ IcecreamController::class, 'destroy']);
 
 
+    Route::middleware(['is_stall_owner'])->group(function()
+    {
+
+        Route::post('stall/update/{stall_id}',   [ StallController::class, 'update']);
+        Route::delete('stall/delete/{stall_id}', [ StallController::class, 'destroy']);
+        Route::post('icecream/store/{stall_id}', [ IcecreamController::class, 'store']);
+
+    });
+
+    Route::middleware(['is_icecream_owner'])->group(function()
+    {
+
+        Route::post('icecream/update/{icecream_id}',   [ IcecreamController::class, 'update']);
+        Route::delete('icecream/delete/{icecream_id}', [ IcecreamController::class, 'destroy']);
+
+    });
 });
 
 Route::middleware(['is_user'])->group(function()

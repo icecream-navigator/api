@@ -36,7 +36,7 @@ class EloquentStall implements StallRepository
 	{
 		$this->upload->setImage($upload);
 
-		$this->model->user_id = $user->id;
+		$this->model->user_id    = $user->id;
 		$this->model->owner      = $user->name;
 		$this->model->photo_url  = $this->upload->getPhotoUrl();
 		$this->model->photo_name = $this->upload->getPhotoName();
