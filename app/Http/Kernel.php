@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'is_user' => \App\Http\Middleware\IsUserMiddleware::class,
         'has_voted' => \App\Http\Middleware\HasVotedMiddleware::class,
         'has_rated' => \App\Http\Middleware\HasRatedMiddleware::class,
+        'is_stall_owner' => \App\Http\Middleware\IsStallOwnerMiddleware::class,
+        'is_icecream_owner' => \App\Http\Middleware\IsIcecreamOwnerMiddleware::class,
     ];
 }
