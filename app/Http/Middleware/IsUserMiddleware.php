@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsNotAdminMiddleware
+class IsUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class IsNotAdminMiddleware
     {
         if (!auth()->check() || auth()->user()->is_admin)
         {
-            abort(403, 'Unauthorized');
+            abort(403, 'Only no admin users can perform this action');
         }
 
         return $next($request);

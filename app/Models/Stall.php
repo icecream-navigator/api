@@ -17,13 +17,27 @@ class Stall extends Model
         'photo',
         'photo_url',
         'photo_name',
-        'user_id'
+        'user_id',
+        'rate',
+        'rates_time'
     ];
 
     protected $hidden = [
         'photo',
-        'photo_name'
+        'photo_name',
+        'created_at',
+        'updated_at'
     ];
+
+    protected $casts = [
+        'rate'       => 'float',
+        'rates_time' => 'integer'
+    ];
+
+    public function setRateAttribute($rate)
+    {
+        $this->attributes['rate'] = number_format($rate, 2);
+    }
 
     public function icecreams()
     {
@@ -33,5 +47,10 @@ class Stall extends Model
     public function opinions()
     {
         return $this->hasMany(Opinion::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
     }
 }

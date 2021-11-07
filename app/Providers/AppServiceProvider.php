@@ -13,6 +13,8 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\User\EloquentUser;
 use App\Repositories\Vote\VoteRepository;
 use App\Repositories\Vote\EloquentVote;
+use App\Repositories\Rate\RateRepository;
+use App\Repositories\Rate\EloquentRate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(OpinionRepository::class, EloquentOpinion::class);
         $this->app->singleton(UserRepository::class, EloquentUser::class);
         $this->app->singleton(VoteRepository::class, EloquentVote::class);
+        $this->app->singleton(RateRepository::class, EloquentRate::class);
     }
 }

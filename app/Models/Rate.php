@@ -5,25 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Opinion extends Model
+class Rate extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'opinion',
-        'author',
-        'author_avatar',
-
+        'user_id',
+        'stall_id',
+        'rate',
     ];
 
-    protected $hidden = [
-        'updated_at'
-    ];
-
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-
-    ];
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function stalls()
     {
