@@ -21,4 +21,10 @@ services:
       MYSQL_ROOT_PASSWORD: wp
       MYSQL_DATABASE: 'icecream_db'
 
+  meilisearch:
 
+    image: getmeili/meilisearch:latest
+    ports:
+      - 8084:7700
+    volumes:
+      - ./data.ms:/data.ms

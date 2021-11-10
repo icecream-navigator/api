@@ -52,6 +52,7 @@ class IcecreamController extends Controller
 
     public function search(IcecreamSearchRequest $request)
     {
-        return $this->icecream->find($request);
+        return $this->icecream->find($request->input('search'));
+
     }
 }

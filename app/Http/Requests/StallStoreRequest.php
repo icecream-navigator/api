@@ -25,8 +25,8 @@ class StallStoreRequest extends FormRequest
     {
         return [
 
-            'name'     => 'required|string|between:5,20',
-            'location' => 'required|string|between:5,25',
+            'name'     => 'required|string|between:5,60',
+            'location' => 'required|string|between:5,60',
             'photo'    => 'image:jpeg,png,jpg,gif,svg|max:4048'
 
         ];

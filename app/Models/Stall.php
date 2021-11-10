@@ -19,7 +19,9 @@ class Stall extends Model
         'photo_name',
         'user_id',
         'rate',
-        'rates_time'
+        'rates_time',
+        'lat',
+        'lon'
     ];
 
     protected $hidden = [
@@ -31,6 +33,8 @@ class Stall extends Model
 
     protected $casts = [
         'rate'       => 'float',
+        'lat'        => 'float',
+        'lon'        => 'float',
         'rates_time' => 'integer'
     ];
 
