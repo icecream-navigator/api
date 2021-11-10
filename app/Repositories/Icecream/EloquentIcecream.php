@@ -4,7 +4,6 @@ namespace App\Repositories\Icecream;
 
 use App\Models\Icecream;
 use App\Models\Stall;
-use Spatie\Searchable\Search;
 
 class EloquentIcecream implements IcecreamRepository
 {
@@ -34,9 +33,9 @@ class EloquentIcecream implements IcecreamRepository
 	{
 		$stall = Stall::findOrFail($stall_id);
 
-		$this->model->user_id    = $user->id;
-		$this->model->stall_id   = $stall_id;
-		$this->model->stall_name = $stall->name;
+		$this->model->user_id        = $user->id;
+		$this->model->stall_id       = $stall_id;
+		$this->model->stall_location = $stall->location;
 
 		$this->model->fill($attributes);
 
@@ -60,17 +59,9 @@ class EloquentIcecream implements IcecreamRepository
 
 	public function find($request)
 	{
-		$searchResults = (new Search())
-			->registerModel(Icecream::class, [
-				'stall_name',
-				'flavour',
-				'type',
-				'form',
-				'price',
-			])
-			->perform($request->get('search'));
+		$result = $this->model->search($request)->get();
 
-		return $searchResults;
+		return $result;
 	}
 }
 

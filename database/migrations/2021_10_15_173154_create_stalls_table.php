@@ -24,6 +24,8 @@ class CreateStallsTable extends Migration
             $table->string('photo_name')->nullable();
             $table->string('photo')->nullable();
             $table->string('location');
+            $table->unsignedFloat('lon', 8,6)->nullable();
+            $table->unsignedFloat('lat', 8,6)->nullable();
 
             $table->timestamps();
 

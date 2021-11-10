@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
+use Laravel\Scout\Searchable;
 
-class Icecream extends Model implements Searchable
+class Icecream extends Model
 {
-    use HasFactory;
-
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'flavour',
@@ -21,6 +19,7 @@ class Icecream extends Model implements Searchable
         'user_id',
         'stall_id',
         'stall_name',
+        'stall_location',
         'votes'
     ];
 
@@ -42,13 +41,5 @@ class Icecream extends Model implements Searchable
     public function votes()
     {
         return $this->hasMany(Vote::class);
-    }
-
-    public function getSearchResult(): SearchResult
-    {
-        return new \Spatie\Searchable\SearchResult(
-            $this,
-            $this->type,
-        );
     }
 }

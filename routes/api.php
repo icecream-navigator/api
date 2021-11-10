@@ -10,6 +10,7 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\FavoriteStallController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\RateController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,4 +83,3 @@ Route::get('stall/show/{stall_id}/opinions', [ StallController::class, 'showOpin
 Route::get('icecream/all',                [ IcecreamController::class, 'index']);
 Route::get('icecream/show/{icecream_id}', [ IcecreamController::class, 'show']);
 Route::post('icecream/search',            [ IcecreamController::class, 'search']);
-
