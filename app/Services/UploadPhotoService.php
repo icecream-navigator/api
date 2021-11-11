@@ -14,9 +14,9 @@ class UploadPhotoService
         if($upload)
         {
             $file_name           = $upload->hashName();
-            $image_uploaded_path = $upload->storeAs('stalls', $file_name, 'public');
+            $image_uploaded_path = $upload->storeAs('stalls', $file_name, 's3');
 
-            $image_url           = Storage::disk('public')->url($image_uploaded_path);
+            $image_url           = Storage::disk('s3')->url($image_uploaded_path);
 
             $this->image_url = $image_url;
             $this->file_name = $file_name;
