@@ -30,7 +30,7 @@ class RateService
 
         $multisum = array_sum($multi);
 
-        $stall_rate = $multisum/$times_rate;
+        $stall_rate = fdiv($multisum,$times_rate);
 
         $stall->rate       = $stall_rate;
         $stall->rates_time = $total_ratings;
