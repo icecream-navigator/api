@@ -64,9 +64,12 @@ Route::middleware(['is_user'])->group(function()
 {
     Route::post('stall/{stall_id}/opinion/create', [ OpinionController::class, 'store']);
 
-    Route::post('fav/{stall_id}',     [ FavoriteStallController::class, 'favourite']);
-    Route::post('unf/{stall_id}',     [ FavoriteStallController::class, 'unfavourite']);
-    Route::get('fav/index',           [ FavoriteStallController::class, 'index']);
+    Route::post('fav/{stall_id}', [ FavoriteStallController::class, 'favourite'])
+        ->middleware('has_favorite');
+
+    Route::post('unf/{stall_id}', [ FavoriteStallController::class, 'unfavourite']);
+    Route::get('fav/index',       [ FavoriteStallController::class, 'index']);
+    Route::get('fav/counter',     [ FavoriteStallController::class, 'favoriteCounter']);
 
     Route::post('icecream/vote/{id}', [ VoteController::class, 'store'])
         ->middleware('has_voted');
