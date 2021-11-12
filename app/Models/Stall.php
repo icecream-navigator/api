@@ -13,7 +13,10 @@ class Stall extends Model
     protected $fillable = [
         'name',
         'owner',
-        'location',
+        'town',
+        'postal_code',
+        'street',
+        'place_name',
         'photo',
         'photo_url',
         'photo_name',
@@ -33,8 +36,8 @@ class Stall extends Model
 
     protected $casts = [
         'rate'       => 'float',
-        'lat'        => 'float',
-        'lon'        => 'float',
+        'lat'        => 'double',
+        'lon'        => 'double',
         'rates_time' => 'integer'
     ];
 

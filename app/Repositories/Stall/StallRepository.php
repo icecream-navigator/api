@@ -24,6 +24,8 @@ interface StallRepository
 
 	public function showFavorites($user);
 
+	public function favoriteCounter($user);
+
 }
 
 ?>

@@ -30,8 +30,14 @@ class FavoriteStallController extends Controller
 
     public function unfavourite($stall_id)
     {
-
         $this->stall->removeFromFavorites($stall_id);
+    }
+
+    public function favoriteCounter()
+    {
+        $user = auth()->user();
+
+        return response($this->stall->favoriteCounter($user));
     }
 
 }

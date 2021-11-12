@@ -4,6 +4,7 @@ namespace App\Repositories\Stall;
 
 use App\Models\Stall;
 use App\Services\UploadPhotoService;
+use ChristianKuri\LaravelFavorite\Models\Favorite;
 
 class EloquentStall implements StallRepository
 {
@@ -104,7 +105,14 @@ class EloquentStall implements StallRepository
 		$stall = $user->favorite(Stall::class);
 
 		return $stall;
+	}
 
+	public function favoriteCounter($user)
+	{
+
+		$counter = Favorite::where('user_id', $user->id)->count();
+
+		return $counter;
 	}
 }
 
