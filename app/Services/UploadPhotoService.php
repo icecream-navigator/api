@@ -23,7 +23,7 @@ class UploadPhotoService
 
         }else {
             $this->file_name = 'default';
-            $this->image_url = Storage::disk('stalls')->url('stalls/default.png');
+            $this->image_url = Storage::disk('s3')->url('stalls/default.png');
 
         }
     }
