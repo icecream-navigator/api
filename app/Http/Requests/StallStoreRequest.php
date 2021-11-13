@@ -31,6 +31,9 @@ class StallStoreRequest extends FormRequest
             'postal_code' => 'string|between:5,60',
             'street'      => 'string|between:5,60',
             'place_name'  => 'string|between:3,60',
+            'open'        => 'date_format:H:i',
+            'close'       => 'date_format:H:i|after:open',
+            'place_name'  => 'string|between:3,60',
 
         ];
     }
@@ -42,6 +45,8 @@ class StallStoreRequest extends FormRequest
             'name.required'     => 'This field is required',
             'name.between'      => 'Must enter 5-20 characters',
             'photo.image'       => 'You must provide image with correct format',
+            'open.date_format'  => 'Time must be in correct format',
+            'close.date_format' => 'Time must be in correct format',
         ];
     }
 }

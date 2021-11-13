@@ -55,8 +55,8 @@ class EloquentStall implements StallRepository
 					   ->where('id', $stall_id)
 					   ->get();
 
-		return response()
-			->json(['Opinions' => $stall], 200, [], JSON_UNESCAPED_SLASHES);
+		return $stall;
+
 	}
 
 	public function showMyStalls($user)

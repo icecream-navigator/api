@@ -10,7 +10,6 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\FavoriteStallController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\RateController;
-use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------

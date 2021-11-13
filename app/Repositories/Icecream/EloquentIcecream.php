@@ -35,7 +35,7 @@ class EloquentIcecream implements IcecreamRepository
 
 		$this->model->user_id        = $user->id;
 		$this->model->stall_id       = $stall_id;
-		$this->model->stall_location = $stall->location;
+		$this->model->stall_location = $stall->town;
 
 		$this->model->fill($attributes);
 

@@ -9,6 +9,8 @@ services:
       - 8081:80
     volumes:
       - ./:/var/www/html
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
 
   db:
 

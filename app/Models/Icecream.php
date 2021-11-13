@@ -20,7 +20,6 @@ class Icecream extends Model
         'stall_id',
         'stall_name',
         'stall_location',
-        'votes'
     ];
 
     protected $hidden = [

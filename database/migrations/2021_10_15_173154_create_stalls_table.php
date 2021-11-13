@@ -27,6 +27,9 @@ class CreateStallsTable extends Migration
             $table->string('postal_code')->nullable();
             $table->string('street')->nullable();
             $table->string('place_name')->nullable();
+            $table->time('open')->nullable();
+            $table->time('close')->nullable();
+            $table->string('status')->nullable();
 
             $table->double('lon', 15,10)->nullable();
             $table->double('lat', 15,10)->nullable();
