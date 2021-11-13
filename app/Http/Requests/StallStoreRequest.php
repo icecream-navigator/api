@@ -27,10 +27,9 @@ class StallStoreRequest extends FormRequest
 
             'name'        => 'required|string|between:5,60',
             'photo'       => 'image:jpeg,png,jpg,gif,svg|max:4048',
-            'town'        => 'string|between:3,60',
-            'postal_code' => 'string|between:5,60',
-            'street'      => 'string|between:5,60',
-            'place_name'  => 'string|between:3,60',
+            'town'        => 'required|string|between:3,60',
+            'postal_code' => 'required|string|between:5,60',
+            'street'      => 'required|string|between:5,60',
             'open'        => 'date_format:H:i',
             'close'       => 'date_format:H:i|after:open',
             'place_name'  => 'string|between:3,60',
@@ -42,11 +41,14 @@ class StallStoreRequest extends FormRequest
     {
         return [
 
-            'name.required'     => 'This field is required',
-            'name.between'      => 'Must enter 5-20 characters',
-            'photo.image'       => 'You must provide image with correct format',
-            'open.date_format'  => 'Time must be in correct format',
-            'close.date_format' => 'Time must be in correct format',
+            'name.required'        => 'This field is required',
+            'name.between'         => 'Must enter 5-20 characters',
+            'town.required'        => 'This field is required',
+            'postal_code.required' => 'This field is required',
+            'street.required'      => 'This field is required',
+            'photo.image'          => 'You must provide image with correct format',
+            'open.date_format'     => 'Time must be in correct format',
+            'close.date_format'    => 'Time must be in correct format',
         ];
     }
 }
