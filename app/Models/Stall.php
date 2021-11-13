@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
+use Carbon\Carbon;
 
 class Stall extends Model
 {
@@ -18,13 +19,13 @@ class Stall extends Model
         'street',
         'place_name',
         'photo',
-        'photo_url',
-        'photo_name',
         'user_id',
-        'rate',
-        'rates_time',
         'lat',
-        'lon'
+        'lon',
+        'open',
+        'close',
+        'status'
+
     ];
 
     protected $hidden = [
@@ -44,6 +45,16 @@ class Stall extends Model
     public function setRateAttribute($rate)
     {
         $this->attributes['rate'] = number_format($rate, 2);
+    }
+
+    public function setOpenAtribute($open)
+    {
+        $this->attributes['open'] =  Carbon::parse($open);
+    }
+
+    public function setCloseAtribute($close)
+    {
+        $this->attributes['close'] =  Carbon::parse($close);
     }
 
     public function icecreams()
