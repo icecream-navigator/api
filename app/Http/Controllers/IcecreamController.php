@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\IcecreamSearchRequest;
 use App\Http\Requests\IcecreamStoreRequest;
+use App\Http\Requests\IcecreamUpdateRequest;
 use App\Repositories\Icecream\IcecreamRepository;
 
 class IcecreamController extends Controller
@@ -35,7 +35,7 @@ class IcecreamController extends Controller
         return response()->json(['message'=>'Icecream stored']);
     }
 
-    public function update(Request $request, $icecream_id)
+    public function update(IcecreamUpdateRequest $request, $icecream_id)
     {
         $this->icecream->update($icecream_id, $request->all());
 

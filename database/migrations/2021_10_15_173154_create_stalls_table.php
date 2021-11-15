@@ -18,8 +18,8 @@ class CreateStallsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('owner');
-            $table->string('rate')->nullable();
-            $table->string('rates_time')->nullable();
+            $table->float('rate')->default(0.00);
+            $table->integer('rates_time')->default(0);
             $table->string('photo_url')->nullable();
             $table->string('photo_name')->nullable();
             $table->string('photo')->nullable();

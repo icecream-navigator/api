@@ -15,6 +15,8 @@ use App\Repositories\Vote\VoteRepository;
 use App\Repositories\Vote\EloquentVote;
 use App\Repositories\Rate\RateRepository;
 use App\Repositories\Rate\EloquentRate;
+use App\Models\Stall;
+use App\Observers\StallObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,5 +44,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserRepository::class, EloquentUser::class);
         $this->app->singleton(VoteRepository::class, EloquentVote::class);
         $this->app->singleton(RateRepository::class, EloquentRate::class);
+        Stall::observe(StallObserver::class);
     }
 }
