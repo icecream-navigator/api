@@ -36,9 +36,9 @@ class SetStallStatus extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Stall $stall)
     {
-        foreach(Stall::all() as $model)
+        foreach($stall->all() as $model)
         {
             $startTime   = $model->open;
             $endTime     = $model->close;
@@ -52,7 +52,7 @@ class SetStallStatus extends Command
 
             }
             else{
-                $model->status = 'Close';
+                $model->status = 'Closed';
                 $model->update();
             }
 

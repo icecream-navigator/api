@@ -25,7 +25,7 @@ class StallStoreRequest extends FormRequest
     {
         return [
 
-            'name'        => 'required|string|between:5,60',
+            'name'        => 'required|string|between:3,60',
             'photo'       => 'image:jpeg,png,jpg,gif,svg|max:4048',
             'town'        => 'required|string|between:3,60',
             'postal_code' => 'required|string|between:5,60',
@@ -42,7 +42,7 @@ class StallStoreRequest extends FormRequest
         return [
 
             'name.required'        => 'This field is required',
-            'name.between'         => 'Must enter 5-20 characters',
+            'name.between'         => 'Must enter 3-60 characters',
             'town.required'        => 'This field is required',
             'postal_code.required' => 'This field is required',
             'street.required'      => 'This field is required',

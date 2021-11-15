@@ -27,11 +27,6 @@ class Icecream extends Model
         'updated_at'
     ];
 
-    protected $casts = [
-        'votes' => 'integer'
-    ];
-
-
     public function stalls()
     {
         return $this->belongsTo(Stall::class);

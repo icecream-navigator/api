@@ -35,26 +35,20 @@ class Stall extends Model
         'updated_at'
     ];
 
-    protected $casts = [
-        'rate'       => 'float',
-        'lat'        => 'double',
-        'lon'        => 'double',
-        'rates_time' => 'integer'
-    ];
 
     public function setRateAttribute($rate)
     {
         $this->attributes['rate'] = number_format($rate, 2);
     }
 
-    public function setOpenAtribute($open)
+    public function getOpenAttribute($open)
     {
-        $this->attributes['open'] =  Carbon::parse($open);
+        return date('H:i', strtotime($this->attributes['open']));
     }
 
-    public function setCloseAtribute($close)
+    public function getCloseAttribute($open)
     {
-        $this->attributes['close'] =  Carbon::parse($close);
+        return date('H:i', strtotime($this->attributes['close']));
     }
 
     public function icecreams()

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StallStoreRequest;
+use App\Http\Requests\StallUpdateRequest;
 use App\Repositories\Stall\StallRepository;
-use Illuminate\Http\Request;
 
 class StallController extends Controller
 {
@@ -49,7 +49,7 @@ class StallController extends Controller
         return response()->json(['message'=>'Created new stall']);
     }
 
-    public function update($stall_id, Request $request)
+    public function update($stall_id, StallUpdateRequest $request)
     {
         $upload = $this->stall->photo = $request->file('photo');
 

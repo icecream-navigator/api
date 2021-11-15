@@ -23,7 +23,7 @@ class CreateIcecreamsTable extends Migration
             $table->string('form')->nullable();
             $table->float('price')->nullable();
             $table->integer('quantity')->nullable();
-            $table->integer('votes')->nullable();
+            $table->integer('votes')->default(0);
 
             $table->timestamps();
 
