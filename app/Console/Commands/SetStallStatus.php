@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Stall;
+use Carbon\Carbon;
 
 class SetStallStatus extends Command
 {
@@ -42,10 +43,13 @@ class SetStallStatus extends Command
         {
             $startTime   = $model->open;
             $endTime     = $model->close;
-            $currentTime = \Carbon\Carbon::now();
+            $currentTime = \Carbon\Carbon::now('UTC');
+            $start = Carbon::createFromTimeString($startTime);
+            $end = Carbon::createFromTimeString($endTime)->addDay();
 
 
-            if($currentTime->betweenExcluded($startTime, $endTime))
+
+            if($currentTime->between($start, $end))
             {
                 $model->status = 'Open';
                 $model->update();

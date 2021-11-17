@@ -31,7 +31,7 @@ class StallStoreRequest extends FormRequest
             'postal_code' => 'required|string|between:5,60',
             'street'      => 'required|string|between:5,60',
             'open'        => 'date_format:H:i',
-            'close'       => 'date_format:H:i|after:open',
+            'close'       => 'date_format:H:i|',
             'place_name'  => 'string|between:3,60',
 
         ];

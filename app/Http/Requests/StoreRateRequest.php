@@ -24,7 +24,7 @@ class StoreRateRequest extends FormRequest
     public function rules()
     {
         return [
-            'rate' => 'required|numeric|between:1,5'
+            'rate' => 'required|integer|numeric|between:1,5'
         ];
     }
 

@@ -23,12 +23,11 @@ class IcecreamFactory extends Factory
     {
         return [
 
-            'flavour'    => $this->faker->sentence(1),
-            'type'       => $this->faker->sentence(1),
-            'form'       => $this->faker->sentence(1),
+            'flavour'    => $this->faker->name,
+            'type'       => $this->faker->name,
+            'form'       => $this->faker->name,
             'price'      => 12.37,
-            'quantity'   => $this->faker->randomDigit(),
-            'stall_name' => $this->faker->sentence(1),
+            'quantity'   => $this->faker->randomDigit,
             'stall_id'   => 1,
             'user_id'    => 1
 
