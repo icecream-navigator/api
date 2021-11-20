@@ -21,14 +21,14 @@ class FavoriteStallController extends Controller
         return response($this->stall->showFavorites($user));
     }
 
-    public function favourite($stall_id)
+    public function favorite($stall_id)
     {
         $user = auth()->user();
 
         $this->stall->addToFavorite($user, $stall_id);
     }
 
-    public function unfavourite($stall_id)
+    public function unfavorite($stall_id)
     {
         $this->stall->removeFromFavorites($stall_id);
     }
