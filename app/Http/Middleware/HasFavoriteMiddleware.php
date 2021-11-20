@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use ChristianKuri\LaravelFavorite\Models\Favorite;
+use App\Models\Stall;
 
 class HasFavoriteMiddleware
 {
@@ -17,14 +17,17 @@ class HasFavoriteMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = auth()->user();
+        $id   = $request->route('stall_id');
 
-        $hasFavorite = Favorite::where('user_id', $user->id)->exists();
+        $stall = Stall::find($id);
+
+        $hasFavorite = $stall->isFavorited();
 
         if($hasFavorite)
         {
-            abort(403, 'You already favorite this stall');
+            abort(403, 'You favorite this stall before');
         }
+
         return $next($request);
     }
 }
