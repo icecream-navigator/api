@@ -59,7 +59,8 @@ class EloquentIcecream implements IcecreamRepository
 
 	public function find($request)
 	{
-		$result = $this->model->search($request)->get();
+		//$result = $this->model->search($request)->get();
+		$result = $this->model->search('"indyk"brzoskwinia')->get();
 
 		return $result;
 	}
