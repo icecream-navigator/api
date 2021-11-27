@@ -17,7 +17,12 @@ class RateService
 
         for($i=0; $i<=5; ++$i)
         {
-            $rates = Rate::where('rate', $i)->count();
+
+            $rates = Rate::where([
+                'stall_id' => $stall_id,
+                'rate'     => $i
+            ])->count();
+
 
             $assoc_rates = array($i=>$rates);
 

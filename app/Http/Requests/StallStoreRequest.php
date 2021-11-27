@@ -30,9 +30,10 @@ class StallStoreRequest extends FormRequest
             'town'        => 'required|string|between:3,60',
             'postal_code' => 'required|string|between:5,60',
             'street'      => 'required|string|between:5,60',
-            'open'        => 'date_format:H:i',
-            'close'       => 'date_format:H:i|',
+            'open'        => 'required|date_format:H:i',
+            'close'       => 'required|date_format:H:i|after:open',
             'place_name'  => 'string|between:3,60',
+            'rating'      => 'integer',
 
         ];
     }
@@ -49,6 +50,7 @@ class StallStoreRequest extends FormRequest
             'photo.image'          => 'You must provide image with correct format',
             'open.date_format'     => 'Time must be in correct format',
             'close.date_format'    => 'Time must be in correct format',
+            'rating.integer'       => 'Rate must be an integer',
         ];
     }
 }
